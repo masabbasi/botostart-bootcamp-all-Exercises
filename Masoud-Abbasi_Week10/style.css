@@ -1,0 +1,240 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(3, 49, 57);
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+  font-family: "Roboto", serif;
+}
+
+.progressSteps {
+  background-color: rgb(229, 229, 229);
+  width: 290px;
+  height: fit-content;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+h1 {
+  font-size: 20px;
+  text-align: center;
+  margin: 2px;
+  color: rgb(3, 49, 57);
+}
+
+.progressSteps__steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border: 3px solid gray;
+  border-radius: 100%;
+  transition: border-color 0.5s ease-in;
+}
+
+.circle:hover {
+  background-color: #3096d7;
+}
+
+.circle:nth-child(1) {
+  border-color: #3096d7;
+}
+
+.line {
+  width: 30px;
+  height: 4px;
+  background-color: gray;
+  transition: background-color 0.5s ease-in;
+}
+
+.progressSteps__bodies {
+  background-color: rgb(3, 49, 57);
+  width: 260px;
+  height: 150px;
+  border-top: 2px solid gray;
+  margin: 10px 0;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.progressSteps__body {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+}
+
+.progressSteps__body h2 {
+  color: white;
+  font-size: 15px;
+  margin: 5px 0 10px;
+}
+
+.progressSteps__body span {
+  display: inline-block;
+  width: 40px;
+  margin-right: 8px;
+  color: gray;
+  font-size: 10px;
+}
+
+.progressSteps__body input {
+  outline: none;
+  padding: 3px;
+  border-radius: 5px;
+  border: none;
+  width: 140px;
+  margin: 3px;
+  font-size: 12px;
+}
+
+.date input {
+  width: 40px;
+}
+
+#cvv2 {
+  width: 50px;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  background-image: url(./bankCard.webp);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+}
+
+.cardNumber {
+  color: white;
+  position: absolute;
+  top: 48%;
+  font-size: 20px;
+  letter-spacing: 3px;
+}
+
+.cardFullName {
+  color: white;
+  position: absolute;
+  top: 65%;
+  font-size: 17px;
+  letter-spacing: 1px;
+}
+
+.cardDate {
+  color: white;
+  position: absolute;
+  bottom: 10px;
+  right: 22px;
+  font-size: 10px;
+}
+
+.cardCvv2 {
+  color: white;
+  position: absolute;
+  bottom: 10px;
+  left: 64px;
+  font-size: 10px;
+}
+
+.progressSteps__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progressSteps__next,
+.progressSteps__prev {
+  width: 50px;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #3096d7;
+  color: white;
+}
+
+.progressSteps__next:hover,
+.progressSteps__prev:hover {
+  filter: brightness(1.2);
+}
+
+.progressSteps__prev {
+  margin-right: 20px;
+}
+
+@media (min-width: 600px) {
+  .progressSteps {
+    width: 550px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .circle {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  .line {
+    width: 50px;
+    height: 6px;
+  }
+  .progressSteps__bodies {
+    background-color: rgb(3, 49, 57);
+    width: 500px;
+    height: 150px;
+  }
+
+  .progressSteps__body h2 {
+    font-size: 20px;
+  }
+  .progressSteps__body span {
+    width: 60px;
+    font-size: 14px;
+  }
+  .progressSteps__body input {
+    padding: 5px;
+    width: 220px;
+    margin: 5px;
+    font-size: 16px;
+  }
+
+  .date input {
+    width: 50px;
+  }
+
+  #cvv2 {
+    width: 80px;
+  }
+
+  .cardDate {
+    right: 140px;
+  }
+
+  .cardCvv2 {
+    left: 186px;
+  }
+
+  .progressSteps__next,
+  .progressSteps__prev {
+    cursor: pointer;
+    width: 60px;
+    height: 30px;
+    font-size: 15px;
+  }
+}

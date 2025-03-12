@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Masoud-Abbasi_Week10</title>
+  </head>
+
+  <body>
+		<div class="progressSteps">
+			<h1>Bank Card Issuance</h1>
+      <div class="progressSteps__steps">
+        <div class="circle" data-circleNumber="0"></div>
+        <div class="line"></div>
+        <div class="circle" data-circleNumber="1"></div>
+        <div class="line"></div>
+        <div class="circle" data-circleNumber="2"></div>
+        <div class="line"></div>
+        <div class="circle" data-circleNumber="3"></div>
+        <div class="line"></div>
+        <div class="circle" data-circleNumber="4"></div>
+      </div>
+      <div class="progressSteps__bodies">
+        <div class="progressSteps__body fullName">
+          <h2>Enter your FullName</h2>
+          <div>
+            <span>Name:</span
+            ><input id="name" type="text" placeholder="Masoud" />
+          </div>
+          <div>
+            <span>LastName:</span
+            ><input id="lastName" type="text" placeholder="Abbasi" />
+          </div>
+        </div>
+        <div class="progressSteps__body fullName">
+          <h2>Enter your bank card number!</h2>
+          <input id="cardNumber" type="number" placeholder="6037701100000000" />
+        </div>
+        <div class="progressSteps__body date">
+          <h2>Enter your card's expiration date!</h2>
+          <div>
+            <span>Month:</span>
+            <input id="month" type="number" placeholder="08" />
+          </div>
+          <div>
+            <span>Year:</span>
+            <input id="year" type="number" placeholder="24" />
+          </div>
+        </div>
+        <div class="progressSteps__body">
+          <h2>Enter your CVV2!</h2>
+          <input id="cvv2" type="number" placeholder="1234" />
+        </div>
+        <div class="progressSteps__body card">
+          <div class="cardNumber"></div>
+          <div class="cardFullName"></div>
+          <div class="cardDate"></div>
+          <div class="cardCvv2"></div>
+        </div>
+      </div>
+      <div class="progressSteps__button">
+        <button class="progressSteps__prev">Prev</button>
+        <button class="progressSteps__next">Next</button>
+      </div>
+    </div>
+    <script src="./main.js" type="module"></script>
+    <script src="./db.js" type="module"></script>
+  </body>
+</html>

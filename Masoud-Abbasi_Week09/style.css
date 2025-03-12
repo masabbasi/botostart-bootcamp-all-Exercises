@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.colorBox {
+  width: 20%;
+  cursor: pointer;
+  height: inherit;
+  position: relative;
+}
+
+.colorBox:nth-child(1) {
+  background-color: rgba(255, 0, 0, 0.18);
+}
+.colorBox:nth-child(2) {
+  background-color: rgba(0, 128, 0, 0.18);
+}
+.colorBox:nth-child(3) {
+  background-color: rgba(0, 0, 255, 0.18);
+}
+.colorBox:nth-child(4) {
+  background-color: rgba(255, 255, 0, 0.18);
+}
+.colorBox:nth-child(5) {
+  background-color: rgba(128, 0, 128, 0.18);
+}
+
+.colorBox:hover {
+  /* ... */
+}
+
+.colorBoxValue {
+  background-color: rgba(0, 0, 0, 0.727);
+  width: inherit;
+  height: 40px;
+  padding: 3px 10px;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.colorBoxButton {
+  width: 20px;
+  height: 20px;
+}
+.colorBoxButton img {
+  width: 100%;
+  height: 100%;
+}
+
+.copyMessage {
+  position: fixed;
+  border-radius: 10px;
+  background-color: rgb(21, 239, 21);
+  color: white;
+  padding: 5px;
+  z-index: 1;
+  border: 1px solid white;
+  display: none;
+}
+
+.cover {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.574);
+  position: fixed;
+  z-index: 888;
+  display: none;
+}
+
+.edit {
+  width: 250px;
+  height: 50px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  display: none;
+  color: gray;
+  -webkit-box-shadow: inset 0px 0px 9px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset 0px 0px 9px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: inset 0px 0px 9px 1px rgba(0, 0, 0, 0.75);
+}
+
+.edit input[type="color"] {
+  width: 40px;
+  height: 40px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 100%;
+  background-color: transparent;
+}
+
+.setEdit {
+  width: 60px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: rgb(74, 164, 74);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.setEdit:hover {
+  background-color: rgb(46, 188, 46);
+}
+
+.cancel {
+  width: 60px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: rgb(204, 88, 88);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cancel:hover {
+  background-color: rgb(214, 52, 52);
+}
+
+@media screen and (max-width: 600px) {
+  * {
+    cursor: auto;
+  }
+  .colorBoxValue {
+    height: 50px;
+    flex-direction: column;
+    gap: 3px;
+    padding: 5px;
+    font-size: 12px;
+  }
+}

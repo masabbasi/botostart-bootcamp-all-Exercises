@@ -1,0 +1,120 @@
+:root {
+  --primary-color: rgba(73, 198, 58, 1);
+  --secondary-color: rgba(0, 0, 0, 0.87);
+  --title-bg: #11410d;
+  --title-color: #cdf279;
+  --content-bg: #246d1e;
+  --content-color: #b1cf99;
+  --main-gradient: linear-gradient(
+    30deg,
+    rgba(15, 30, 35, 1) 10%,
+    rgba(29, 70, 44, 1) 11%,
+    rgba(25, 57, 44, 1) 11%,
+    rgba(29, 70, 44, 1) 11%,
+    rgba(36, 92, 45, 1) 19%,
+    rgba(40, 106, 45, 1) 20%,
+    rgba(40, 106, 45, 1) 20%,
+    rgba(40, 106, 45, 1) 20%,
+    rgba(46, 123, 46, 1) 20%,
+    rgba(52, 142, 46, 1) 28%,
+    rgba(60, 165, 47, 1) 29%,
+    rgba(60, 165, 47, 1) 29%,
+    rgba(60, 165, 47, 1) 29%,
+    rgba(60, 165, 47, 1) 29%
+  );
+  --main-font: "Vazirmatn";
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; /* 1rem = 10px; */
+  scroll-behavior: smooth;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("../fonts/Vazirmatn[wght].woff2") format("woff2 supports variations"),
+    url("../fonts/Vazirmatn[wght].woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--main-font);
+}
+
+.container {
+  width: 99vw;
+  height: 99vh;
+  margin: 0 auto;
+  border-radius: 0.5rem;
+  background: var(--main-gradient);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  width: 30rem;
+  height: 4rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background-color: var(--title-bg);
+  color: var(--title-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.content {
+  width: 30rem;
+  height: 7rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  background-color: var(--content-bg);
+  color: var(--content-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+/* Responsive - Desktop First */
+
+/* Small Screens,laptops */
+@media screen and (max-width: 768px) {
+  .title {
+    width: 40rem;
+    height: 4rem;
+  }
+  .content {
+    width: 40rem;
+    height: 8rem;
+  }
+}
+
+/* Ipads,Tablets */
+@media screen and (max-width: 576px) {
+  .title {
+    width: 90vw;
+    height: 4rem;
+  }
+  .content {
+    width: 90vw;
+    height: 8rem;
+  }
+}
