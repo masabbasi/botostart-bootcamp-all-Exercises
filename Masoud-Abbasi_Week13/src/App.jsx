@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <Header />
-      <TabMenu setTabNumber={setTabNumber} />
+      <TabMenu tabNumber={tabNumber} setTabNumber={setTabNumber} />
       <main>
         <h2>{allContent[tabNumber].title}</h2>
         <p>{allContent[tabNumber].content}</p>

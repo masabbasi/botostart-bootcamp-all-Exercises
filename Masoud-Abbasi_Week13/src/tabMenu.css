@@ -21,3 +21,8 @@ li:hover {
   border-bottom: 3px solid yellow;
   cursor: pointer;
 }
+
+.activeTab {
+  border-bottom: 3px solid yellow;
+  cursor: pointer;
+}
