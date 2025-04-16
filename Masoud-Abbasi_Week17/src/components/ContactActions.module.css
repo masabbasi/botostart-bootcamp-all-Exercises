@@ -1,0 +1,36 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.search {
+
+}
+
+.search label {
+	font-size: 20px;
+	margin-left: 10px;
+}
+
+.search input {
+	outline: none;
+	border: none;
+	width: 300px;
+	height: 30px;
+	border-radius: 10px;
+	padding: 5px;
+	font-size: 15px;
+}
+
+.buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.buttons img {
+	border: 3px solid white;
+	border-radius: 50%;
+}
