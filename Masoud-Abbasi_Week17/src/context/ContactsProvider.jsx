@@ -5,11 +5,9 @@ import { addContact, deleteContact } from "../services/config.js";
 import { getContacts } from "../services/config.js";
 
 const initialState = {
-  contacts: "",
+  contacts: [],
   addContacts: false,
   selectContacts: false,
-  showAddConfirm: false,
-  showDeleteConfirm: false,
 };
 
 const reducer = (state, action) => {
@@ -20,16 +18,14 @@ const reducer = (state, action) => {
       addContact(action.payload);
       return {
         ...state,
-        showAddConfirm: !state.showAddConfirm,
         addContacts: !state.addContacts,
       };
+    case "DELETE_ITEM":
+      console.log("Start delete");
+      deleteContact(action.payload);
+      break;
     case "CHANGE_ADD_SHOW":
       return { ...state, addContacts: !state.addContacts };
-    case "CHANGE_ADD_CONFIRM":
-      return { ...state, showAddConfirm: !state.showAddConfirm };
-    case "DELETE_ITEM":
-      deleteContact(action.payload);
-			break;
     default:
       throw new Error("Invalid Action");
   }
@@ -45,8 +41,9 @@ function ContactsProvider({ children }) {
       const data = await getContacts();
       dispatch({ type: "GET_CONTACTS", payload: data });
     };
+
     fetchContacts();
-  }, [contactsApp]);
+  }, []);
 
   return (
     <ContactsContext.Provider value={{ contactsApp, dispatch }}>
@@ -57,21 +54,13 @@ function ContactsProvider({ children }) {
 
 const useContacts = () => {
   const {
-    contactsApp: {
-      contacts,
-      addContacts,
-      selectContacts,
-      showAddConfirm,
-      showDeleteConfirm,
-    },
+    contactsApp: { contacts, addContacts, selectContacts },
     dispatch,
   } = useContext(ContactsContext);
   return {
     contacts,
     addContacts,
     selectContacts,
-    showAddConfirm,
-    showDeleteConfirm,
     dispatch,
   };
 };

@@ -18,10 +18,8 @@ const addContact = async (data) => {
     body: JSON.stringify(data),
   });
   if (!res.ok) {
-    throw new Error("Error - Get");
+    throw new Error("Error - Add");
   }
-  const mainData = await res.json();
-  return mainData;
 };
 
 const deleteContact = async (id) => {
@@ -29,11 +27,8 @@ const deleteContact = async (id) => {
     method: "DELETE",
   });
   if (!res.ok) {
-		console.log(res);
-    throw new Error("Error - Get");
+    throw new Error("Error - Delete");
   }
-  const mainData = await res.json();
-  return mainData;
 };
 
 const changeContact = async (data) => {
@@ -45,10 +40,8 @@ const changeContact = async (data) => {
     },
   });
   if (!res.ok) {
-    throw new Error("Error - Get");
+    throw new Error("Error - Update");
   }
-  const mainData = await res.json();
-  return mainData;
 };
 
 export { getContacts, addContact, deleteContact, changeContact };

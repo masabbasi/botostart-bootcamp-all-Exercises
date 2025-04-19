@@ -1,9 +1,10 @@
 import { useState } from "react";
 import styles from "./AddContacts.module.css";
 import { useContacts } from "../context/ContactsProvider.jsx";
-import AddConfirm from "../components/AddConfirm.jsx";
+import Confirm from "./Confirm.jsx";
 
 function AddContacts() {
+  const [confirm, setConfirm] = useState(false);
   const [contact, setContact] = useState({
     name: "",
     lastName: "",
@@ -11,14 +12,7 @@ function AddContacts() {
     mobile: "",
   });
 
-  const {
-    contacts,
-    addContacts,
-    selectContacts,
-    showAddConfirm,
-    showDeleteConfirm,
-    dispatch,
-  } = useContacts();
+  const { contacts, addContacts, selectContacts, dispatch } = useContacts();
 
   const changeHandler = (e) => {
     setContact((contact) => ({ ...contact, [e.target.name]: e.target.value }));
@@ -76,16 +70,18 @@ function AddContacts() {
             onChange={changeHandler}
           />
         </div>
-        <button
-          className={styles.addButton}
-          onClick={() => {
-            dispatch({ type: "CHANGE_ADD_CONFIRM" });
-          }}
-        >
+        <button className={styles.addButton} onClick={() => setConfirm(true)}>
           اضافه کردن
         </button>
-        {showAddConfirm && <AddConfirm contact={contact} />}
       </div>
+      {confirm && (
+        <Confirm
+          setConfirm={setConfirm}
+          type="add"
+          contact={contact}
+          message="آیا مخاطب اضافه شود؟"
+        />
+      )}
     </>
   );
 }

@@ -1,37 +1,54 @@
-import React, { useState } from "react";
-import { useContacts } from "../context/ContactsProvider.jsx";
+import { useState } from "react";
+import Confirm from "./Confirm.jsx";
 
 function ListItem({ contact }) {
-  const [manage, setManage] = useState(false);
-	const {
-    contacts,
-    addContacts,
-    selectContacts,
-    showAddConfirm,
-    showDeleteConfirm,
-    dispatch,
-  } = useContacts();
+  const [change, setChange] = useState(false);
+  const [confirm, setConfirm] = useState(false);
+
+  const changeHandler = (e) => {
+    if (e.target.tagName !== "BUTTON") {
+      setChange(false);
+    }
+    if (e.target.tagName === "BUTTON" && e.target.innerText === "Change") {
+      setChange(true);
+      setTimeout(() => {
+        setChange(false);
+      }, 3000);
+    }
+  };
+
+  const deleteHandler = () => {
+    setConfirm(true);
+  };
 
   return (
     <>
-      <tr>
+      <tr onClick={changeHandler}>
         <td>{contact.name}</td>
         <td>{contact.lastname}</td>
         <td>{contact.email}</td>
         <td>{contact.mobile}</td>
         <td>
-          <div>
-            {manage ? (
+          <span>
+            {change ? (
               <>
                 <button>edit</button>
-                <button onClick={()=>dispatch({type:"DELETE_ITEM",payload:contact.id})}>delete</button>
+                <button onClick={deleteHandler}>delete</button>
               </>
             ) : (
-              <button onClick={() => setManage(true)}>"Edit"</button>
+              <button onClick={changeHandler}>Change</button>
             )}
-          </div>
+          </span>
         </td>
       </tr>
+      {confirm && (
+        <Confirm
+          setConfirm={setConfirm}
+          contact={contact}
+          type="delete"
+          message="آیا مخاطب حذف شود؟"
+        />
+      )}
     </>
   );
 }
