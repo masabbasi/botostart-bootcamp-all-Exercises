@@ -1,23 +1,26 @@
 import { useState } from "react";
-import styles from "./AddContacts.module.css";
+import styles from "./editContacts.module.css";
 import useContacts from "../context/useContacts.jsx";
 import Confirm from "./Confirm.jsx";
 
-function AddContacts() {
+function EditContacts() {
   const [confirm, setConfirm] = useState(false);
+  const { contacts, addContacts, selectContacts, currentContact, dispatch } =
+    useContacts();
   const [contact, setContact] = useState({
-    name: "",
-    lastName: "",
-    email: "",
-    mobile: "",
+    name: currentContact.name,
+    lastName: currentContact.lastName,
+    email: currentContact.email,
+    mobile: currentContact.mobile,
   });
 
   const onConfirm = () => {
-    dispatch({ type: "ADD_CONTACT", payload: contact });
+    dispatch({
+      type: "EDIT_CONTACT",
+      payload: { id: currentContact.id, data: contact },
+    });
     setConfirm(false);
   };
-
-  const { contacts, addContacts, selectContacts, dispatch } = useContacts();
 
   const changeHandler = (e) => {
     setContact((contact) => ({ ...contact, [e.target.name]: e.target.value }));
@@ -27,10 +30,10 @@ function AddContacts() {
     <>
       <div
         className={styles.cover}
-        onClick={() => dispatch({ type: "CHANGE_ADD_SHOW" })}
+        onClick={() => dispatch({ type: "CHANGE_EDIT_SHOW" })}
       ></div>
       <div className={styles.container}>
-        <h2>اضافه کردن مخاطب</h2>
+        <h2>ویرایش کردن مخاطب</h2>
         <div>
           <label htmlFor="name">نام:</label>
           <input
@@ -76,7 +79,7 @@ function AddContacts() {
           />
         </div>
         <button className={styles.addButton} onClick={() => setConfirm(true)}>
-          اضافه کردن
+          ویرایش کردن
         </button>
       </div>
       {confirm && (
@@ -84,11 +87,11 @@ function AddContacts() {
           setConfirm={setConfirm}
           onConfirm={onConfirm}
           contact={contact}
-          type="اضافه"
+          type="ویرایش"
         />
       )}
     </>
   );
 }
 
-export default AddContacts;
+export default EditContacts;

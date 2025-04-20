@@ -7,7 +7,13 @@
 body {
   width: 100vw;
   height: 100vh;
-	padding: 30px;
-	background-color: rgb(3, 26, 46);
-	color: white;
+  padding: 30px;
+  background-color: #213448;
+  color: #ecefca;
+}
+
+@media (max-width: 580px) {
+  * {
+    cursor:default !important;
+  }
 }

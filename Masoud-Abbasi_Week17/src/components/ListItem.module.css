@@ -1,0 +1,20 @@
+.changeButton button {
+	border: none;
+	outline: none;
+	padding: 3px;
+	border-radius: 5px;
+}
+
+.changeButton button:hover {
+	cursor: pointer;
+	background-color: #547792;
+	color: #ECEFCA;
+}
+
+.editButton {
+margin-left: 5px;
+}
+
+.changeButton {
+	
+}

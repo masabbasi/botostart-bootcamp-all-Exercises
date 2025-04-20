@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./ContactActions.module.css";
-import { useContacts } from "../context/ContactsProvider";
+import useContacts from "../context/useContacts.jsx";
 
 function ContactActions() {
   const [search, setSearch] = useState("");
@@ -16,7 +16,7 @@ function ContactActions() {
   return (
     <div className={styles.container}>
       <div className={styles.search}>
-        <label htmlFor="search">جستجو در مخاطبین:</label>
+        <label htmlFor="search">جستجو:</label>
         <input
           id="search"
           type="text"

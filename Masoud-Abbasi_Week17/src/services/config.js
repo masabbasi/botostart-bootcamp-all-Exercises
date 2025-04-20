@@ -22,16 +22,7 @@ const addContact = async (data) => {
   }
 };
 
-const deleteContact = async (id) => {
-  const res = await fetch(`${BASE_URL}/${id}`, {
-    method: "DELETE",
-  });
-  if (!res.ok) {
-    throw new Error("Error - Delete");
-  }
-};
-
-const changeContact = async (data) => {
+const changeContact = async ({ id, data }) => {
   const res = await fetch(`${BASE_URL}/${id}`, {
     method: "PATCH",
     body: JSON.stringify(data),
@@ -41,6 +32,15 @@ const changeContact = async (data) => {
   });
   if (!res.ok) {
     throw new Error("Error - Update");
+  }
+};
+
+const deleteContact = async (id) => {
+  const res = await fetch(`${BASE_URL}/${id}`, {
+    method: "DELETE",
+  });
+  if (!res.ok) {
+    throw new Error("Error - Delete");
   }
 };
 

@@ -1,13 +1,18 @@
 import React, { createContext, useContext, useEffect, useReducer } from "react";
 
-import { addContact, deleteContact } from "../services/config.js";
-
-import { getContacts } from "../services/config.js";
+import {
+  getContacts,
+  addContact,
+  deleteContact,
+  changeContact,
+} from "../services/config.js";
 
 const initialState = {
   contacts: [],
   addContacts: false,
+  editContacts: false,
   selectContacts: false,
+  currentContact: {},
 };
 
 const reducer = (state, action) => {
@@ -20,18 +25,30 @@ const reducer = (state, action) => {
         ...state,
         addContacts: !state.addContacts,
       };
+    case "EDIT_CONTACT":
+      changeContact(action.payload);
+      return {
+        ...state,
+        editContacts: !state.editContacts,
+        currentContact: {},
+      };
     case "DELETE_ITEM":
-      console.log("Start delete");
       deleteContact(action.payload);
-      break;
+      return { ...state };
     case "CHANGE_ADD_SHOW":
       return { ...state, addContacts: !state.addContacts };
+    case "CHANGE_EDIT_SHOW":
+      return {
+        ...state,
+        editContacts: !state.editContacts,
+        currentContact: action.payload,
+      };
     default:
       throw new Error("Invalid Action");
   }
 };
 
-const ContactsContext = createContext();
+export const ContactsContext = createContext();
 
 function ContactsProvider({ children }) {
   const [contactsApp, dispatch] = useReducer(reducer, initialState);
@@ -43,7 +60,7 @@ function ContactsProvider({ children }) {
     };
 
     fetchContacts();
-  }, []);
+  }, [contactsApp]);
 
   return (
     <ContactsContext.Provider value={{ contactsApp, dispatch }}>
@@ -52,18 +69,4 @@ function ContactsProvider({ children }) {
   );
 }
 
-const useContacts = () => {
-  const {
-    contactsApp: { contacts, addContacts, selectContacts },
-    dispatch,
-  } = useContext(ContactsContext);
-  return {
-    contacts,
-    addContacts,
-    selectContacts,
-    dispatch,
-  };
-};
-
 export default ContactsProvider;
-export { useContacts };
