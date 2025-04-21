@@ -9,23 +9,27 @@ function ContactsList() {
   return (
     <>
       <div className={styles.container}>
-        {contacts.length > 0 ? (<table>
-          <thead>
-            <tr>
-              <th>نام</th>
-              <th>نام خانوادگی</th>
-              <th>ایمیل</th>
-              <th>موبایل</th>
-              <th>تغییرات</th>
-            </tr>
-          </thead>
-          <tbody>
-            {contacts?.length > 0 &&
-              contacts.map((contact) => (
-                <ListItem key={contact.id} contact={contact} />
-              ))}
-          </tbody>
-        </table>) : <p>مخاطبی وجود ندارد!</p>}
+        {contacts.length > 0 ? (
+          <table>
+            <thead>
+              <tr>
+                <th>نام</th>
+                <th>نام خانوادگی</th>
+                <th>ایمیل</th>
+                <th>موبایل</th>
+                <th>تغییرات</th>
+              </tr>
+            </thead>
+            <tbody>
+              {contacts?.length > 0 &&
+                contacts.map((contact) => (
+                  <ListItem key={contact.id} contact={contact} />
+                ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>مخاطبی وجود ندارد!</p>
+        )}
       </div>
     </>
   );

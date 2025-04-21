@@ -1,38 +1,80 @@
 import { useState } from "react";
 import styles from "./ContactActions.module.css";
 import useContacts from "../context/useContacts.jsx";
+import Confirm from "./Confirm.jsx";
 
 function ContactActions() {
+  const [confirm, setConfirm] = useState(false);
   const [search, setSearch] = useState("");
-  const {
-    contacts,
-    addContacts,
-    selectContacts,
-    showAddConfirm,
-    showDeleteConfirm,
-    dispatch,
-  } = useContacts();
+  const { selectContacts, deleteContacts, dispatch } = useContacts();
+
+  const onConfirm = () => {
+    deleteContacts.forEach((id) =>
+      dispatch({ type: "DELETE_ITEM", payload: id })
+    );
+    setConfirm(false);
+    dispatch({ type: "DELETE_ALL_CONTACTS" });
+    dispatch({ type: "SELECT_CONTACTS" });
+    dispatch({
+      type: "SET_NOTIFICATION",
+      payload: { userAction: "مخاطبین با موفقیت حذف شدند!", status: true },
+    });
+    setTimeout(() => {
+      dispatch({
+        type: "SET_NOTIFICATION",
+        payload: { type: "", status: false },
+      });
+    }, 3000);
+  };
+
+	const hideDeleteIcon = (e)=>{
+		if (e.target.tagName !== "IMG" && e.target.src !== "/img/delete-user.png") {
+			dispatch({ type: "SELECT_CONTACTS" });
+		}
+	}
 
   return (
-    <div className={styles.container}>
-      <div className={styles.search}>
-        <label htmlFor="search">جستجو:</label>
-        <input
-          id="search"
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value.trim())}
+    <>
+      <div onClick={hideDeleteIcon} className={styles.container}>
+        <div className={styles.search}>
+          <label htmlFor="search">جستجو:</label>
+          <input
+            id="search"
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value.trim())}
+          />
+        </div>
+        <div className={styles.buttons}>
+          <div>
+            {selectContacts ? (
+              <img
+                src="/img/delete-user.png"
+                alt=""
+                onClick={() => setConfirm(true)}
+              />
+            ) : (
+              <img
+                src="/img/select-users.png"
+                alt=""
+                onClick={() => dispatch({ type: "SELECT_CONTACTS" })}
+              />
+            )}
+          </div>
+          <div onClick={() => dispatch({ type: "CHANGE_ADD_SHOW" })}>
+            <img src="/img/add-user.png" alt="" />
+          </div>
+        </div>
+      </div>
+      {confirm && (
+        <Confirm
+          setConfirm={setConfirm}
+          onConfirm={onConfirm}
+          contact={{}}
+          type="آیا مخاطبین حذف شوند؟"
         />
-      </div>
-      <div className={styles.buttons}>
-        <div onClick={() => dispatch()}>
-          <img src="/img/select-users.png" alt="" />
-        </div>
-        <div onClick={() => dispatch({ type: "CHANGE_ADD_SHOW" })}>
-          <img src="/img/add-user.png" alt="" />
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 

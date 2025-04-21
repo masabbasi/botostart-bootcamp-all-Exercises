@@ -2,9 +2,12 @@ import { useState } from "react";
 import styles from "./AddContacts.module.css";
 import useContacts from "../context/useContacts.jsx";
 import Confirm from "./Confirm.jsx";
+import Notification from "./Notification.jsx";
+import { validation } from "../Helper/Validation.js";
 
 function AddContacts() {
   const [confirm, setConfirm] = useState(false);
+  const [allError, setAllError] = useState({});
   const [contact, setContact] = useState({
     name: "",
     lastName: "",
@@ -12,9 +15,31 @@ function AddContacts() {
     mobile: "",
   });
 
+  const addHandler = () => {
+    if (validation(contact) === true) {
+      setConfirm(true);
+    } else {
+      setAllError(validation(contact));
+    }
+  };
+
   const onConfirm = () => {
-    dispatch({ type: "ADD_CONTACT", payload: contact });
-    setConfirm(false);
+    if (validation(contact)) {
+      dispatch({ type: "ADD_CONTACT", payload: contact });
+      setConfirm(false);
+      dispatch({
+        type: "SET_NOTIFICATION",
+        payload: { userAction: "مخاطب با موفقیت اضافه شد!", status: true },
+      });
+      setTimeout(() => {
+        dispatch({
+          type: "SET_NOTIFICATION",
+          payload: { type: "", status: false },
+        });
+      }, 3000);
+    } else {
+      allError = validation(contact);
+    }
   };
 
   const { contacts, addContacts, selectContacts, dispatch } = useContacts();
@@ -42,6 +67,7 @@ function AddContacts() {
             onChange={changeHandler}
           />
         </div>
+        {allError.name != "" && <p className={styles.errors}>{allError.name}</p>}
         <div>
           <label htmlFor="lastName">نام خانوادگی:</label>
           <input
@@ -53,6 +79,7 @@ function AddContacts() {
             onChange={changeHandler}
           />
         </div>
+        {allError.lastName != "" && <p className={styles.errors}>{allError.lastName}</p>}
         <div>
           <label htmlFor="email">ایمیل:</label>
           <input
@@ -64,6 +91,7 @@ function AddContacts() {
             onChange={changeHandler}
           />
         </div>
+        {allError.email != "" && <p className={styles.errors}>{allError.email}</p>}
         <div>
           <label htmlFor="mobile">موبایل</label>
           <input
@@ -75,7 +103,9 @@ function AddContacts() {
             onChange={changeHandler}
           />
         </div>
-        <button className={styles.addButton} onClick={() => setConfirm(true)}>
+        {allError.mobile != "" && <p className={styles.errors}>{allError.mobile}</p>}
+        <button className={styles.addButton} onClick={addHandler}>
+          {/* <button className={styles.addButton} onClick={() => setConfirm(true)}> */}
           اضافه کردن
         </button>
       </div>
@@ -84,7 +114,7 @@ function AddContacts() {
           setConfirm={setConfirm}
           onConfirm={onConfirm}
           contact={contact}
-          type="اضافه"
+          type="آیا مخاطب اضافه شود؟"
         />
       )}
     </>

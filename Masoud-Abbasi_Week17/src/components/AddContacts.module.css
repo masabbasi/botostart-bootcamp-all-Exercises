@@ -21,10 +21,14 @@
   padding: 10px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: right;
   flex-direction: column;
   gap: 5px;
   z-index: 3;
+}
+
+.container h2 {
+  text-align: center;
 }
 
 .name,
@@ -58,7 +62,7 @@ label {
 
 .addButton {
   background-color: #94b4c1;
-  color: white;
+  color: #ecefca;
   width: 100%;
   height: 30px;
   display: flex;
@@ -72,6 +76,13 @@ label {
 
 .addButton:hover {
   background-color: rgba(56, 133, 192, 0.712);
+}
+
+.errors {
+  color: rgba(231, 1, 1, 0.699);
+  font-size: 10px;
+  text-align: right;
+  font-weight: bold;
 }
 
 @media (max-width: 580px) {

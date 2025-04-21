@@ -20,6 +20,16 @@ function EditContacts() {
       payload: { id: currentContact.id, data: contact },
     });
     setConfirm(false);
+		dispatch({
+      type: "SET_NOTIFICATION",
+      payload: { userAction: "مخاطب با موفقیت ویرایش شد!", status: true },
+    });
+		setTimeout(() => {
+			dispatch({
+				type: "SET_NOTIFICATION",
+				payload: { userAction: "", status: false },
+			});
+		}, 3000);
   };
 
   const changeHandler = (e) => {
@@ -87,7 +97,7 @@ function EditContacts() {
           setConfirm={setConfirm}
           onConfirm={onConfirm}
           contact={contact}
-          type="ویرایش"
+          type="آیا مخاطب ویرایش شود؟"
         />
       )}
     </>

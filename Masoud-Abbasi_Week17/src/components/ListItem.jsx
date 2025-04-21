@@ -7,7 +7,7 @@ function ListItem({ contact }) {
   const [change, setChange] = useState(false);
   const [confirm, setConfirm] = useState(false);
   const [process, setProcess] = useState(false);
-  const { dispatch } = useContacts();
+  const { dispatch, selectContacts } = useContacts();
 
   const onConfirm = () => {
     setProcess(true);
@@ -29,10 +29,28 @@ function ListItem({ contact }) {
 
   const deleteHandler = () => {
     setConfirm(true);
+    dispatch({
+      type: "SET_NOTIFICATION",
+      payload: { type: "حذف", status: true },
+    });
+    setTimeout(() => {
+      dispatch({
+        type: "SET_NOTIFICATION",
+        payload: { type: "", status: false },
+      });
+    }, 3000);
   };
 
   const editHandler = (contact) => {
     dispatch({ type: "CHANGE_EDIT_SHOW", payload: contact });
+  };
+
+  const checkBoxHandler = (e, id) => {
+    if (e.target.checked) {
+      dispatch({ type: "ADD_CONTACT_FOR_DELETE", payload: id });
+    } else {
+			dispatch({ type: "REMOVE_CONTACT_FOR_DELETE", payload: id });
+		}
   };
 
   return (
@@ -44,7 +62,12 @@ function ListItem({ contact }) {
         <td>{contact.mobile}</td>
         <td>
           <span className={styles.changeButton}>
-            {change ? (
+            {selectContacts ? (
+              <input
+                type="checkbox"
+                onClick={(e) => checkBoxHandler(e, contact.id)}
+              />
+            ) : change ? (
               <>
                 <button
                   className={styles.editButton}
@@ -67,7 +90,7 @@ function ListItem({ contact }) {
           setConfirm={setConfirm}
           onConfirm={onConfirm}
           contact={contact}
-          type="حذف"
+          type="آیا مخاطب حذف شود؟"
           process={process}
         />
       )}

@@ -9,13 +9,19 @@ import {
 
 const initialState = {
   contacts: [],
+  deleteContacts: [],
   addContacts: false,
   editContacts: false,
   selectContacts: false,
+  notification: { userAction: "", status: false },
   currentContact: {},
 };
 
 const reducer = (state, action) => {
+  if (!action || !action.type) {
+    console.error("Invalid action received:", action);
+    return state;
+  }
   switch (action.type) {
     case "GET_CONTACTS":
       return { ...state, contacts: action.payload };
@@ -35,6 +41,24 @@ const reducer = (state, action) => {
     case "DELETE_ITEM":
       deleteContact(action.payload);
       return { ...state };
+    case "ADD_CONTACT_FOR_DELETE":
+      return {
+        ...state,
+        deleteContacts: [...state.deleteContacts, action.payload],
+      };
+    case "REMOVE_CONTACT_FOR_DELETE":
+      return {
+        ...state,
+        deleteContacts: state.deleteContacts.filter(
+          (id) => id !== action.payload
+        ),
+      };
+    case "DELETE_ALL_CONTACTS":
+      // state.deleteContacts.forEach((contactId) => deleteContact(contactId));
+      return {
+        ...state,
+        deleteContacts: [],
+      };
     case "CHANGE_ADD_SHOW":
       return { ...state, addContacts: !state.addContacts };
     case "CHANGE_EDIT_SHOW":
@@ -42,6 +66,22 @@ const reducer = (state, action) => {
         ...state,
         editContacts: !state.editContacts,
         currentContact: action.payload,
+      };
+    case "SELECT_CONTACTS":
+      if (!state.selectContacts) {
+        state.deleteContacts = [];
+      }
+      return {
+        ...state,
+        selectContacts: !state.selectContacts,
+      };
+    case "SET_NOTIFICATION":
+      return {
+        ...state,
+        notification: {
+          userAction: action.payload.userAction,
+          status: action.payload.status,
+        },
       };
     default:
       throw new Error("Invalid Action");

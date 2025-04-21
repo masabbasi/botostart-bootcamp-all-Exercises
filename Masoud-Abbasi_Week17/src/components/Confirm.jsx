@@ -9,10 +9,10 @@ function Confirm({ contact, type, setConfirm, onConfirm, process }) {
     <>
       <div className={styles.cover}></div>
       <div className={styles.container}>
-        <p className={styles.request}>{`آیا مخاطب ${type} شود؟`}</p>
+        <p className={styles.request}>{type}</p>
         <div className={styles.buttons}>
           <button disabled={process} onClick={() => onConfirm()}>
-            {process ? `در حال ${type}` : "بله"}
+            {process ? `در حال انجام...` : "بله"}
           </button>
           <button onClick={noHandler}>خیر</button>
         </div>
