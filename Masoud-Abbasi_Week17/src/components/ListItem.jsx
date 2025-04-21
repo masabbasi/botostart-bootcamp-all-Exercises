@@ -31,7 +31,7 @@ function ListItem({ contact }) {
     setConfirm(true);
     dispatch({
       type: "SET_NOTIFICATION",
-      payload: { type: "حذف", status: true },
+      payload: { userAction: "مخاطب با موفقیت حذف شد!", status: true },
     });
     setTimeout(() => {
       dispatch({

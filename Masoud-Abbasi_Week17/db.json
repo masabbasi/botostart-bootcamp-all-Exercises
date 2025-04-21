@@ -1,18 +1,3 @@
 {
-  "contacts": [
-    {
-      "id": "a4a1",
-      "name": "2",
-      "lastName": "",
-      "email": "",
-      "mobile": ""
-    },
-    {
-      "id": "fa72",
-      "name": "mas",
-      "lastName": "absas",
-      "email": "masoud.abbasi.71@gmail.com",
-      "mobile": "09333333333"
-    }
-  ]
+  "contacts": []
 }
