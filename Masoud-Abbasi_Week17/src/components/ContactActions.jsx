@@ -9,9 +9,12 @@ function ContactActions() {
   const { selectContacts, deleteContacts, dispatch } = useContacts();
 
   const searchHandler = (e) => {
-    if (e.target.value.trim() != "") {
+    let query = e.target.value.trim();
+    if (query != "") {
       setSearch(e.target.value.trim());
-      dispatch({ type: "SEARCH", payload: search });
+      if (query.length > 2) {
+        dispatch({ type: "SEARCH", payload: search });
+      }
     } else {
       setSearch("");
       dispatch({ type: "SEARCH", payload: "" });
@@ -33,7 +36,6 @@ function ContactActions() {
         type: "SET_NOTIFICATION",
         payload: { type: "", status: false },
       });
-      // dispatch({ type: "SELECT_CONTACTS" });
     }, 3000);
   };
 
@@ -53,6 +55,7 @@ function ContactActions() {
             type="text"
             value={search}
             onChange={searchHandler}
+						placeholder="حداقل 3 کاراکتر"
           />
         </div>
         <div className={styles.buttons}>
