@@ -39,21 +39,21 @@
   padding: 5px;
   background-color: #547792;
   color: #ecefca;
-	border: 1px solid transparent;
+  border: 1px solid transparent;
 }
 
 .name:focus,
 .lastName:focus,
 .email:focus,
 .mobile:focus {
-	border: 1px solid #94B4C1;
+  border: 1px solid #94b4c1;
 }
 
 label {
   margin-left: 10px;
   display: inline-block;
   width: 80px;
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .addButton {
@@ -67,10 +67,17 @@ label {
   border: none;
   outline: none;
   border-radius: 10px;
-	cursor: pointer;
+  cursor: pointer;
 }
-.addButton:hover{
-	background-color: rgba(56, 133, 192, 0.712);
+.addButton:hover {
+  background-color: rgba(56, 133, 192, 0.712);
+}
+
+.errors {
+  color: rgba(231, 1, 1, 0.699);
+  font-size: 10px;
+  text-align: right;
+  font-weight: bold;
 }
 
 @media (max-width: 580px) {

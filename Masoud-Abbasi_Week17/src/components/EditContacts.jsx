@@ -2,9 +2,11 @@ import { useState } from "react";
 import styles from "./editContacts.module.css";
 import useContacts from "../context/useContacts.jsx";
 import Confirm from "./Confirm.jsx";
+import { validation } from "../Helper/Validation.js";
 
 function EditContacts() {
   const [confirm, setConfirm] = useState(false);
+  const [allError, setAllError] = useState({});
   const { contacts, addContacts, selectContacts, currentContact, dispatch } =
     useContacts();
   const [contact, setContact] = useState({
@@ -14,22 +16,30 @@ function EditContacts() {
     mobile: currentContact.mobile,
   });
 
+  const editHandler = () => {
+    if (validation(contact) === true) {
+      setConfirm(true);
+    } else {
+      setAllError(validation(contact));
+    }
+  };
+
   const onConfirm = () => {
     dispatch({
       type: "EDIT_CONTACT",
       payload: { id: currentContact.id, data: contact },
     });
     setConfirm(false);
-		dispatch({
+    dispatch({
       type: "SET_NOTIFICATION",
       payload: { userAction: "مخاطب با موفقیت ویرایش شد!", status: true },
     });
-		setTimeout(() => {
-			dispatch({
-				type: "SET_NOTIFICATION",
-				payload: { userAction: "", status: false },
-			});
-		}, 3000);
+    setTimeout(() => {
+      dispatch({
+        type: "SET_NOTIFICATION",
+        payload: { userAction: "", status: false },
+      });
+    }, 3000);
   };
 
   const changeHandler = (e) => {
@@ -55,6 +65,9 @@ function EditContacts() {
             onChange={changeHandler}
           />
         </div>
+        {allError.name != "" && (
+          <p className={styles.errors}>{allError.name}</p>
+        )}
         <div>
           <label htmlFor="lastName">نام خانوادگی:</label>
           <input
@@ -66,6 +79,9 @@ function EditContacts() {
             onChange={changeHandler}
           />
         </div>
+        {allError.lastName != "" && (
+          <p className={styles.errors}>{allError.lastName}</p>
+        )}
         <div>
           <label htmlFor="email">ایمیل:</label>
           <input
@@ -77,6 +93,9 @@ function EditContacts() {
             onChange={changeHandler}
           />
         </div>
+        {allError.email != "" && (
+          <p className={styles.errors}>{allError.email}</p>
+        )}
         <div>
           <label htmlFor="mobile">موبایل</label>
           <input
@@ -88,7 +107,10 @@ function EditContacts() {
             onChange={changeHandler}
           />
         </div>
-        <button className={styles.addButton} onClick={() => setConfirm(true)}>
+        {allError.mobile != "" && (
+          <p className={styles.errors}>{allError.mobile}</p>
+        )}
+        <button className={styles.addButton} onClick={editHandler}>
           ویرایش کردن
         </button>
       </div>

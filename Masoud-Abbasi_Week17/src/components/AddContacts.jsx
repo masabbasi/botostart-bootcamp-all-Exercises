@@ -24,22 +24,18 @@ function AddContacts() {
   };
 
   const onConfirm = () => {
-    if (validation(contact)) {
-      dispatch({ type: "ADD_CONTACT", payload: contact });
-      setConfirm(false);
+    dispatch({ type: "ADD_CONTACT", payload: contact });
+    setConfirm(false);
+    dispatch({
+      type: "SET_NOTIFICATION",
+      payload: { userAction: "مخاطب با موفقیت اضافه شد!", status: true },
+    });
+    setTimeout(() => {
       dispatch({
         type: "SET_NOTIFICATION",
-        payload: { userAction: "مخاطب با موفقیت اضافه شد!", status: true },
+        payload: { type: "", status: false },
       });
-      setTimeout(() => {
-        dispatch({
-          type: "SET_NOTIFICATION",
-          payload: { type: "", status: false },
-        });
-      }, 3000);
-    } else {
-      allError = validation(contact);
-    }
+    }, 3000);
   };
 
   const { contacts, addContacts, selectContacts, dispatch } = useContacts();
@@ -67,7 +63,9 @@ function AddContacts() {
             onChange={changeHandler}
           />
         </div>
-        {allError.name != "" && <p className={styles.errors}>{allError.name}</p>}
+        {allError.name != "" && (
+          <p className={styles.errors}>{allError.name}</p>
+        )}
         <div>
           <label htmlFor="lastName">نام خانوادگی:</label>
           <input
@@ -79,7 +77,9 @@ function AddContacts() {
             onChange={changeHandler}
           />
         </div>
-        {allError.lastName != "" && <p className={styles.errors}>{allError.lastName}</p>}
+        {allError.lastName != "" && (
+          <p className={styles.errors}>{allError.lastName}</p>
+        )}
         <div>
           <label htmlFor="email">ایمیل:</label>
           <input
@@ -91,7 +91,9 @@ function AddContacts() {
             onChange={changeHandler}
           />
         </div>
-        {allError.email != "" && <p className={styles.errors}>{allError.email}</p>}
+        {allError.email != "" && (
+          <p className={styles.errors}>{allError.email}</p>
+        )}
         <div>
           <label htmlFor="mobile">موبایل</label>
           <input
@@ -103,7 +105,9 @@ function AddContacts() {
             onChange={changeHandler}
           />
         </div>
-        {allError.mobile != "" && <p className={styles.errors}>{allError.mobile}</p>}
+        {allError.mobile != "" && (
+          <p className={styles.errors}>{allError.mobile}</p>
+        )}
         <button className={styles.addButton} onClick={addHandler}>
           {/* <button className={styles.addButton} onClick={() => setConfirm(true)}> */}
           اضافه کردن
