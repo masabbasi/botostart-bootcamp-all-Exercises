@@ -8,6 +8,16 @@ function ContactActions() {
   const [search, setSearch] = useState("");
   const { selectContacts, deleteContacts, dispatch } = useContacts();
 
+  const searchHandler = (e) => {
+    if (e.target.value.trim() != "") {
+      setSearch(e.target.value.trim());
+      dispatch({ type: "SEARCH", payload: search });
+    } else {
+			setSearch("");
+      dispatch({ type: "SEARCH", payload: "" });
+    }
+  };
+
   const onConfirm = () => {
     deleteContacts.forEach((id) =>
       dispatch({ type: "DELETE_ITEM", payload: id })
@@ -27,11 +37,11 @@ function ContactActions() {
     }, 3000);
   };
 
-	const hideDeleteIcon = (e)=>{
-		if (e.target.tagName !== "IMG" && e.target.src !== "/img/delete-user.png") {
-			dispatch({ type: "SELECT_CONTACTS" });
-		}
-	}
+  const hideDeleteIcon = (e) => {
+    if (e.target.tagName !== "IMG" && e.target.src !== "/img/delete-user.png") {
+      dispatch({ type: "SELECT_CONTACTS" });
+    }
+  };
 
   return (
     <>
@@ -42,7 +52,7 @@ function ContactActions() {
             id="search"
             type="text"
             value={search}
-            onChange={(e) => setSearch(e.target.value.trim())}
+            onChange={searchHandler}
           />
         </div>
         <div className={styles.buttons}>

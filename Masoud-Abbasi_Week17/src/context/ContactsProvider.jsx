@@ -9,6 +9,7 @@ import {
 
 const initialState = {
   contacts: [],
+  searchContacts: [],
   deleteContacts: [],
   addContacts: false,
   editContacts: false,
@@ -54,7 +55,6 @@ const reducer = (state, action) => {
         ),
       };
     case "DELETE_ALL_CONTACTS":
-      // state.deleteContacts.forEach((contactId) => deleteContact(contactId));
       return {
         ...state,
         deleteContacts: [],
@@ -83,6 +83,20 @@ const reducer = (state, action) => {
           status: action.payload.status,
         },
       };
+    case "SEARCH":
+      if (action.payload != "") {
+        return {
+          ...state,
+          searchContacts: state.contacts.filter(
+            (item) =>
+              item.name
+                .toLowerCase()
+                .startsWith(action.payload.toLowerCase()) ||
+              item.email.toLowerCase().startsWith(action.payload.toLowerCase())
+          ),
+        };
+      } else return { ...state, searchContacts: [] };
+
     default:
       throw new Error("Invalid Action");
   }

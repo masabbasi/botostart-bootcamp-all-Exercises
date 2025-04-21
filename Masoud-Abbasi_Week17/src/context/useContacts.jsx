@@ -8,8 +8,9 @@ const useContacts = () => {
       addContacts,
       editContacts,
       selectContacts,
-			notification,
-			deleteContacts,
+      notification,
+      searchContacts,
+      deleteContacts,
       currentContact,
     },
     dispatch,
@@ -20,8 +21,9 @@ const useContacts = () => {
     editContacts,
     selectContacts,
     currentContact,
-		deleteContacts,
-		notification,
+    deleteContacts,
+    searchContacts,
+    notification,
     dispatch,
   };
 };
