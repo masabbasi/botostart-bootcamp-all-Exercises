@@ -13,7 +13,7 @@ function ContactActions() {
       setSearch(e.target.value.trim());
       dispatch({ type: "SEARCH", payload: search });
     } else {
-			setSearch("");
+      setSearch("");
       dispatch({ type: "SEARCH", payload: "" });
     }
   };
@@ -23,22 +23,22 @@ function ContactActions() {
       dispatch({ type: "DELETE_ITEM", payload: id })
     );
     setConfirm(false);
-    dispatch({ type: "DELETE_ALL_CONTACTS" });
-    dispatch({ type: "SELECT_CONTACTS" });
     dispatch({
       type: "SET_NOTIFICATION",
       payload: { userAction: "مخاطبین با موفقیت حذف شدند!", status: true },
     });
+    dispatch({ type: "DELETE_ALL_CONTACTS" });
     setTimeout(() => {
       dispatch({
         type: "SET_NOTIFICATION",
         payload: { type: "", status: false },
       });
+      // dispatch({ type: "SELECT_CONTACTS" });
     }, 3000);
   };
 
   const hideDeleteIcon = (e) => {
-    if (e.target.tagName !== "IMG" && e.target.src !== "/img/delete-user.png") {
+    if (selectContacts && e.target.src !== "/img/delete-user.png") {
       dispatch({ type: "SELECT_CONTACTS" });
     }
   };

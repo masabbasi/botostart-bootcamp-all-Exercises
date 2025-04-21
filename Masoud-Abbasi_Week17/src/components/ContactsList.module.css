@@ -54,10 +54,11 @@
   white-space: nowrap;
 }
 
-.container p {
-  text-align: center;
-  font-size: 20px;
-  margin: 10px;
+.container p,
+.notFound {
+  text-align: center !important;
+  font-size: 20px !important;
+  margin: 10px !important;
 }
 
 .container::-webkit-scrollbar {

@@ -49,8 +49,8 @@ function ListItem({ contact }) {
     if (e.target.checked) {
       dispatch({ type: "ADD_CONTACT_FOR_DELETE", payload: id });
     } else {
-			dispatch({ type: "REMOVE_CONTACT_FOR_DELETE", payload: id });
-		}
+      dispatch({ type: "REMOVE_CONTACT_FOR_DELETE", payload: id });
+    }
   };
 
   return (

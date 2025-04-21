@@ -1,6 +1,9 @@
 import styles from "./Confirm.module.css";
+import useContacts from "../context/useContacts.jsx";
 
 function Confirm({ contact, type, setConfirm, onConfirm, process }) {
+  const { deleteContacts } = useContacts();
+
   const noHandler = () => {
     setConfirm(false);
   };

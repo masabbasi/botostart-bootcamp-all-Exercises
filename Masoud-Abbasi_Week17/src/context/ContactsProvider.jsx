@@ -41,7 +41,12 @@ const reducer = (state, action) => {
       };
     case "DELETE_ITEM":
       deleteContact(action.payload);
-      return { ...state };
+      return {
+        ...state,
+        contacts: state.contacts.filter(
+          (contact) => contact.id !== action.payload
+        ),
+      };
     case "ADD_CONTACT_FOR_DELETE":
       return {
         ...state,
@@ -68,9 +73,6 @@ const reducer = (state, action) => {
         currentContact: action.payload,
       };
     case "SELECT_CONTACTS":
-      if (!state.selectContacts) {
-        state.deleteContacts = [];
-      }
       return {
         ...state,
         selectContacts: !state.selectContacts,
@@ -85,16 +87,22 @@ const reducer = (state, action) => {
       };
     case "SEARCH":
       if (action.payload != "") {
-        return {
-          ...state,
-          searchContacts: state.contacts.filter(
-            (item) =>
-              item.name
-                .toLowerCase()
-                .startsWith(action.payload.toLowerCase()) ||
-              item.email.toLowerCase().startsWith(action.payload.toLowerCase())
-          ),
-        };
+        let searchResult = state.contacts.filter(
+          (item) =>
+            item.name.toLowerCase().startsWith(action.payload.toLowerCase()) ||
+            item.email.toLowerCase().startsWith(action.payload.toLowerCase())
+        );
+        if (searchResult.length > 0) {
+          return {
+            ...state,
+            searchContacts: searchResult,
+          };
+        } else {
+          return {
+            ...state,
+            searchContacts: ["empty"],
+          };
+        }
       } else return { ...state, searchContacts: [] };
 
     default:
