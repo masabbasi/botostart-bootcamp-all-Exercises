@@ -1,0 +1,26 @@
+[
+  {
+    "id": "9bafa87d-754a-48c1-ba80-4589d15fc5bc",
+    "name": "string",
+    "price": 100,
+    "quantity": 100
+  },
+  {
+    "id": "6fb1dde9-9367-41af-86a4-c76c957d02f7",
+    "name": "test8",
+    "price": 67,
+    "quantity": 56
+  },
+  {
+    "id": "95e4c9d8-95ee-46ab-94bb-3cf8822b799a",
+    "name": "test8",
+    "price": 67,
+    "quantity": 56
+  },
+  {
+    "id": "1cb04a8f-60e2-40e8-82cf-5ea505813c88",
+    "name": "test9",
+    "price": 67,
+    "quantity": 56
+  }
+]
