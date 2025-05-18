@@ -1,0 +1,63 @@
+.container {
+  background-color: #3333337d;
+  backdrop-filter: blur(10px);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.main {
+  background-color: var(--light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2rem;
+  width: 280px;
+  padding: 2rem;
+  position: absolute;
+  right: 50%;
+  top: 20%;
+  transform: translateX(50%);
+}
+
+.message {
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin: 2rem 0;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+}
+
+.confirm,
+.noConfirm {
+  background-color: var(--border-color);
+  font-size: 1.2rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: none;
+  outline: none;
+  width: 100px;
+}
+
+.confirm {
+  background-color: #f43f5e;
+  color: var(--light);
+}
+
+/* Responsive - Mobile First */
+/* Laptop Size */
+@media screen and (min-width: 992px) {
+.button button:hover{
+	filter: brightness(0.9);
+	cursor: pointer;
+}
+}

@@ -1,0 +1,119 @@
+.container {
+  background-color: #3333337d;
+  backdrop-filter: blur(10px);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.main {
+  background-color: var(--light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2rem;
+  width: 280px;
+  padding: 2rem;
+  position: absolute;
+  right: 50%;
+  top: 20%;
+  transform: translateX(50%);
+}
+
+.title {
+  margin-bottom: 2rem;
+}
+
+form .label {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  display: inline-block;
+}
+
+form input {
+  width: 100%;
+  height: 3rem;
+  background-color: var(--gray);
+  border-radius: 1rem;
+  padding: 1rem 0.5rem;
+  outline: none;
+  border: 1px solid transparent;
+  color: var(--text-color);
+}
+
+form input:focus {
+  border-color: var(--border-color);
+}
+
+.error {
+  margin-top: 0.5rem;
+  color: red;
+  font-weight: bold;
+  text-align: right;
+  padding-right: 1rem;
+}
+
+.button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 9%;
+}
+
+.button button {
+  width: 40%;
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: var(--gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  height: 4rem;
+  margin-top: 2rem;
+}
+
+.button button:first-child {
+  background-color: var(--secondary-color);
+  color: var(--light);
+}
+
+/* Responsive - Mobile First */
+/* Mobile Size */
+@media screen and (min-width: 576px) {
+  .main {
+    width: 400px;
+  }
+  .title {
+    font-size: 2.2rem;
+  }
+
+  form .label {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  form input {
+    height: 4rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .error {
+    margin-top: 1rem;
+  }
+
+  .button button {
+    padding: 1.5rem;
+    height: 4.5rem;
+  }
+
+  .button button:hover {
+    filter: brightness(0.9);
+    cursor: pointer;
+  }
+}
