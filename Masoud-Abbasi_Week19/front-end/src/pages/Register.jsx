@@ -20,10 +20,7 @@ function Register() {
     mutationFn: registerUser,
     onSuccess: (response) => {
       if (response.message === "User registered successfully") {
-        toast.success("ثبت نام با موفقیت انجام شد!", {
-          position: "top-right",
-          autoClose: 2000,
-        });
+        toast.success("ثبت نام با موفقیت انجام شد!");
         navigate("/login");
       }
     },
@@ -37,10 +34,7 @@ function Register() {
       },
       {
         onError: () => {
-          toast.error("کاربر با این یوزرنیم وجود دارد!", {
-            position: "top-right",
-            autoClose: 1500,
-          });
+          toast.error("کاربر با این یوزرنیم وجود دارد!");
           resetForm({ username: "", password: "", repassword: "" });
         },
       }
