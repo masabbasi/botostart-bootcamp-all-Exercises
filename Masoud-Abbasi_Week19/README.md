@@ -25,8 +25,12 @@
 - frontend/ : شامل کدهای فرانت‌اند ([مثلاً React]، کامپوننت‌های رابط کاربری و غیره).
 - README.md : مستندات پروژه
 فایل‌های پروژه را از گیت‌هاب کلون کنید:
+با توجه به اینکه کل تمرینات روی یک ریپازیتوری قرار دارد، ابتدا آن را clone کنید:
 ```bash
 git clone https://github.com/masabbasi/botostart-bootcamp-all-Exercises.git
+```
+سپس به پوشه این پروژه بروید:
+```bash
 cd botostart-bootcamp-all-Exercises/Masoud-Abbasi_Week19
 ```
 ### 2. راه‌اندازی بک‌اند
