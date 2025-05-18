@@ -1,0 +1,306 @@
+.container {
+  width: 90%;
+  align-items: flex-start;
+  margin-top: 2rem;
+	margin-bottom:3rem
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--light);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem;
+  border-radius: 2rem;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search input {
+  border: none;
+  outline: none;
+  padding: 1rem;
+  font-size: 1.3rem;
+  color: var(--text-color);
+  width: 100px;
+}
+
+.user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userImage {
+  margin-left: 1rem;
+  padding-right: 1rem;
+  border-right: 1px solid var(--border-color);
+}
+
+.userDetail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.userName {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.userPosition {
+  font-size: 0.8rem;
+}
+
+.exit {
+  background-color: rgb(190, 99, 99);
+  color: var(--light);
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+.productManagement {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0 1rem;
+}
+
+.productManagementTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.addProduct div {
+  background-color: var(--secondary-color);
+  color: var(--light);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.body {
+  border: 1px solid var(--border-color);
+  min-height: 300px;
+  height: fit-content;
+  border-radius: 1rem;
+  overflow-x: scroll;
+  background-color: var(--light);
+  position: relative;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table thead {
+  border-radius: 3rem 3rem 0 0;
+  background-color: var(--gray);
+  height: 7rem;
+}
+
+table tbody {
+  border-radius: 0 0 3rem 3rem;
+}
+
+th,
+td {
+  padding: 1rem;
+  text-align: right;
+  width: 50px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th:first-child,
+td:first-child,
+th:nth-child(4),
+td:nth-child(4) {
+  width: 100px;
+}
+
+th {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+td {
+  font-size: 1.2rem;
+}
+
+.loader,
+.notFound {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 41%;
+  transform: translateX(-50%);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.pagination button {
+  background-color: var(--secondary-color);
+  color: var(--light);
+  padding: 0.5rem;
+  border-radius: 1rem;
+  outline: none;
+  border: none;
+}
+
+.pagination p {
+  background-color: var(--light);
+  border-radius: 50%;
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--border-color);
+}
+
+.active {
+  background-color: var(--secondary-color) !important;
+  color: var(--light);
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+  border-radius: 1rem;
+}
+
+/* Responsive - Mobile First */
+/* Small Device Size */
+@media screen and (min-width: 450px) {
+  .header {
+    padding: 1rem;
+  }
+  .search input {
+    width: 200px;
+    font-size: 1.5rem;
+  }
+}
+
+/* Mobile Size */
+@media screen and (min-width: 576px) {
+  .search input {
+    width: 300px;
+  }
+  .userName {
+    font-size: 1.4rem;
+  }
+  .userPosition {
+    font-size: 1.2rem;
+  }
+  .productManagementTitle {
+    font-size: 1.5rem;
+  }
+  .pagination p {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.2rem;
+  }
+}
+
+/* Laptop Size */
+@media screen and (min-width: 992px) {
+  .search input {
+    font-size: 1.5rem;
+  }
+
+  .userName {
+    font-size: 1.5rem;
+  }
+
+  .userPosition {
+    font-size: 1.3rem;
+  }
+
+  .exit:hover {
+    filter: brightness(0.9);
+    cursor: pointer;
+  }
+
+  .productManagementTitle {
+    font-size: 1.8rem;
+  }
+
+  .addProduct div {
+    font-size: 1.6rem;
+    cursor: pointer;
+  }
+
+  .addProduct div:hover {
+    filter: brightness(0.9);
+  }
+
+  th {
+    font-size: 1.8rem;
+  }
+
+  td {
+    font-size: 1.7rem;
+  }
+
+  tbody tr:hover {
+    background-color: var(--secondary-color);
+    cursor: pointer;
+    color: var(--light);
+    transition: background-color 0.2s ease-in;
+  }
+
+  .pagination button {
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
+
+  .pagination button:hover {
+    filter: brightness(0.9);
+  }
+
+  .pagination p {
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in;
+  }
+
+  .pagination p:hover {
+    background-color: var(--secondary-color);
+    color: var(--light);
+    cursor: pointer;
+  }
+}
