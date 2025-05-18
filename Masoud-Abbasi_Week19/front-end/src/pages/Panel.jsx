@@ -6,7 +6,7 @@ import { Hourglass } from "react-loader-spinner";
 import { api } from "../configs/api.js";
 import { useApp } from "../context/appProvider";
 
-import ProductItem from "../component/productItem.jsx";
+import ProductItem from "../component/ProductItem.jsx";
 import Confirm from "../modal/Confirm.jsx";
 import Add from "../modal/Add.jsx";
 import Edit from "../modal/Edit.jsx";
