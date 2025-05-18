@@ -1,0 +1,21 @@
+.container {
+  width: 90%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.imgContainer img {
+  width: 100%;
+}
+
+.container a {
+  background-color: var(--secondary-color);
+	padding: 2rem;
+	color: var(--light);
+	text-decoration: none;
+	margin-top: 3rem;
+	border-radius: 2rem;
+	font-size: 2rem;
+}
