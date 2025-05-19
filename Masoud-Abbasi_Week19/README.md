@@ -22,6 +22,7 @@
 
 ### 1. دریافت فایل ها
 فایل های پروژه را از گیت هاب کلون کنید.
+
 با توجه به اینکه کل تمرینات روی یک ریپازیتوری قرار دارد، ابتدا آن را clone کنید:
 ```bash
 git clone https://github.com/masabbasi/botostart-bootcamp-all-Exercises.git
