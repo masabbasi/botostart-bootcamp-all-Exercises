@@ -29,7 +29,7 @@ git clone https://github.com/masabbasi/botostart-bootcamp-all-Exercises.git
 ```
 سپس به پوشه این پروژه بروید:
 ```bash
-cd botostart-bootcamp-all-Exercises/Masoud-Abbasi_Week19
+cd botostart-bootcamp-all-Exercises/Masoud-Abbasi_Week23
 ```
 ### 2. راه اندازی بک اند
 به پوشه back-end بروید:
