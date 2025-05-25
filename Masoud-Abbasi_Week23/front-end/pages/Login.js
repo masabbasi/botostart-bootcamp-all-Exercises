@@ -1,19 +1,19 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import { useMutation } from "@tanstack/react-query";
 import { Formik, ErrorMessage, Field } from "formik";
 import { toast } from "react-toastify";
 
-import { useApp } from "../context/appProvider";
+import { useApp } from "../context/AppProvider";
 import { loginValidationSchema } from "../helper/loginValidationSchema.js";
 import { api } from "../configs/api.js";
 import { setCookie } from "../utils/cookie.js";
 
-import styles from "./Login-register.module.css";
-import logo from "../assets/img/logo.svg";
+import styles from "./login-register.module.css";
 
 function Login() {
+  const router = useRouter();
   const { dispatch } = useApp();
-  const navigate = useNavigate();
 
   const loginUser = async (values) => {
     const response = await api.post("/auth/login", values);
@@ -31,7 +31,7 @@ function Login() {
           dispatch({ type: "USER_LOGIN", payload: values.username });
           toast.success("ورود با موفقیت انجام شد!");
           setCookie(data.token);
-          navigate("/");
+          router.push("/");
         }
       },
       onError: (response) => {
@@ -46,7 +46,7 @@ function Login() {
   return (
     <>
       <div className={styles.container}>
-        <img className={styles.logo} src={logo} alt="" />
+        <img className={styles.logo} src="/img/logo.svg" alt="" />
         <h1 className={styles.title}>فرم ورود</h1>
         <Formik
           initialValues={{ username: "", password: "" }}
@@ -85,7 +85,7 @@ function Login() {
             </form>
           )}
         </Formik>
-        <Link className={styles.link} to="/register">
+        <Link className={styles.link} href="/register">
           حساب کاربری ندارید؟
         </Link>
       </div>

@@ -1,44 +1,37 @@
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { Hourglass } from "react-loader-spinner";
 
-import { api } from "../configs/api.js";
-import { useApp } from "../context/appProvider.jsx";
+import { useApp } from "../context/AppProvider.js";
 
-import ProductItem from "../component/ProductItem.jsx";
-import Confirm from "../modal/Confirm.jsx";
-import Add from "../modal/Add.jsx";
-import Edit from "../modal/Edit.jsx";
+import ProductItem from "../components/ProductItem.js";
+import Confirm from "../components/modal/Confirm.js";
+import Add from "../components/modal/Add.js";
+import Edit from "../components/modal/Edit.js";
 
-import styles from "./Panel.module.css";
-import searchIcon from "../assets/img/search.svg";
-import userImage from "../assets/img/user.png";
-import ProductManagement from "../assets/img/Product Management.svg";
-import notFound from "../assets/img/not-found.png";
+import styles from "./panel.module.css";
+import { useRouter } from "next/router.js";
+import { useProducts } from "@/hooks/useProducts.js";
 
 function Panel() {
+  const router = useRouter();
   const {
-    state: { confirmModal, addModal, editModal, userLogin },
+    state: { confirmModal, addModal, editModal, userLogin, isAuthenticated },
     dispatch,
   } = useApp();
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [page, setPage] = useState(1);
+  if (!isAuthenticated) {
+    router.push("/login");
+  }
 
-  const fetchProducts = async ({ queryKey }) => {
-    const [, searchQuery, page] = queryKey;
-    const response = await api.get(
-      `/products?page=${page}&limit=5&name=${searchQuery}`
-    );
-    return response;
-  };
-
-  const { data, isSuccess, isLoading } = useQuery({
-    queryKey: ["products", searchQuery, page],
-    queryFn: fetchProducts,
-    retry: 1,
-  });
+  const {
+    searchQuery,
+    setSearchQuery,
+    page,
+    setPage,
+    data,
+    isSuccess,
+    isLoading,
+  } = useProducts();
 
   const exitHandler = () => {
     toast.success("با موفقیت خارج شدید!");
@@ -54,6 +47,7 @@ function Panel() {
     if (page <= 1) return;
     setPage((page) => page - 1);
   };
+
   const nextHandler = () => {
     if (page >= data?.totalPages) return;
     setPage((page) => page + 1);
@@ -69,7 +63,7 @@ function Panel() {
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.search}>
-          <img src={searchIcon} alt="" />
+          <img src="/img/search.svg" alt="" />
           <input
             onChange={searchHandler}
             name="search"
@@ -80,7 +74,7 @@ function Panel() {
         </div>
         <div className={styles.user}>
           <div className={styles.userImage}>
-            <img src={userImage} alt="user Image" />
+            <img src="/img/user.png" alt="user Image" />
           </div>
           <div className={styles.userDetail}>
             <span className={styles.userName}>{userLogin}</span>
@@ -93,8 +87,7 @@ function Panel() {
       </div>
       <div className={styles.productManagement}>
         <div className={styles.productManagementTitle}>
-          <img src={ProductManagement} alt="Product Management Icon" />
-          <span>مدیریت کالا</span>
+          <img src="/img/Product Management.svg" />
         </div>
         <div className={styles.addProduct}>
           <div onClick={() => dispatch({ type: "CHANGE_ADD" })}>
@@ -103,7 +96,7 @@ function Panel() {
         </div>
       </div>
       <div className={styles.body}>
-        <table>
+        <table className={styles.table}>
           <thead>
             <tr>
               <th>نام کالا</th>
@@ -115,7 +108,7 @@ function Panel() {
           </thead>
           <tbody>
             {isSuccess ? (
-              data?.data.map((product) => (
+              data?.data?.map((product) => (
                 <ProductItem key={product.id} product={product} />
               ))
             ) : isLoading ? (
@@ -132,7 +125,7 @@ function Panel() {
               </div>
             ) : (
               <div className={styles.notFound}>
-                <img src={notFound} alt="not found" />
+                <img src="img/not-found.png" alt="not found" />
               </div>
             )}
           </tbody>
@@ -162,7 +155,7 @@ function Panel() {
       </div>
       {confirmModal && <Confirm />}
       {addModal && <Add />}
-      {editModal && <Edit />}{" "}
+      {editModal && <Edit />}
     </div>
   );
 }

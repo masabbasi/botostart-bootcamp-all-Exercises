@@ -99,43 +99,43 @@
   position: relative;
 }
 
-table {
+.table {
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
 }
 
-table thead {
+.table thead {
   border-radius: 3rem 3rem 0 0;
   background-color: var(--gray);
   height: 7rem;
 }
 
-table tbody {
+.table tbody {
   border-radius: 0 0 3rem 3rem;
 }
 
-th,
-td {
+.table th,
+.table td {
   padding: 1rem;
   text-align: right;
   width: 50px;
   border-bottom: 1px solid var(--border-color);
 }
 
-th:first-child,
-td:first-child,
-th:nth-child(4),
-td:nth-child(4) {
+.table th:first-child,
+.table td:first-child,
+.table th:nth-child(4),
+.table td:nth-child(4) {
   width: 100px;
 }
 
-th {
+.table th {
   font-size: 1.4rem;
   font-weight: bold;
 }
 
-td {
+.table td {
   font-size: 1.2rem;
 }
 
@@ -186,16 +186,16 @@ td {
   color: var(--light);
 }
 
-::-webkit-scrollbar {
+.body ::-webkit-scrollbar {
   width: 0.5rem;
   height: 0.5rem;
 }
 
-::-webkit-scrollbar-track {
+.body ::-webkit-scrollbar-track {
   background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
+.body ::-webkit-scrollbar-thumb {
   background: var(--secondary-color);
   border-radius: 1rem;
 }
@@ -265,15 +265,15 @@ td {
     filter: brightness(0.9);
   }
 
-  th {
+  .table th {
     font-size: 1.8rem;
   }
 
-  td {
+  .table td {
     font-size: 1.7rem;
   }
 
-  tbody tr:hover {
+  .table tbody tr:hover {
     background-color: var(--secondary-color);
     cursor: pointer;
     color: var(--light);

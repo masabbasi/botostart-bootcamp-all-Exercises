@@ -1,57 +1,54 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { Formik, ErrorMessage, Field } from "formik";
 import { toast } from "react-toastify";
 
-import { useApp } from "../context/appProvider";
-import { productValidationSchema } from "../helper/productValidationSchema.js";
-import { api } from "../configs/api.js";
+import { productValidationSchema } from "../../helper/productValidationSchema.js";
 
 import styles from "./Add-edit.module.css";
+import { useEditProduct } from "@/hooks/useEditProduct.js";
 
-function Add() {
-  const { dispatch } = useApp();
+function Edit() {
   const queryClient = useQueryClient();
 
-  const addProduct = async (values) => {
-    const response = await api.post("/products", values);
-    return response;
-  };
-
-  const mutation = useMutation({
-    mutationFn: addProduct,
-  });
+  const { mutation, product, dispatch } = useEditProduct();
 
   const yesHandler = (values) => {
     mutation.mutate(values, {
       onSuccess: () => {
-        toast.success("کالا با موفقیت اضافه شد!");
         queryClient.invalidateQueries({ queryKey: ["products"] });
-        dispatch({ type: "CHANGE_ADD" });
+        dispatch({ type: "CHANGE_EDIT" });
+        dispatch({ type: "SELECT_PRODUCT", payload: {} });
+        toast.success("کالا با موفقیت ویرایش شد!");
       },
       onError: () => {
         toast.error("خطایی رخ داد! مجدد تلاش کنید");
-        dispatch({ type: "CHANGE_ADD" });
+        dispatch({ type: "CHANGE_EDIT" });
+        dispatch({ type: "SELECT_PRODUCT", payload: {} });
       },
     });
   };
-
   const noHandler = () => {
-    dispatch({ type: "CHANGE_ADD" });
+    dispatch({ type: "CHANGE_EDIT" });
+    dispatch({ type: "EDIT_PRODUCT", payload: {} });
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.main}>
-        <h1 className={styles.title}>ایجاد محصول جدید</h1>
+        <h1 className={styles.title}>ویرایش محصول</h1>
         <Formik
-          initialValues={{ name: "", price: "", quantity: "" }}
+          initialValues={{
+            name: product.name,
+            price: product.price,
+            quantity: product.quantity,
+          }}
           validationSchema={productValidationSchema}
           validateOnChange={true}
           validateOnBlur={true}
           onSubmit={(values) => yesHandler(values)}
         >
           {({ handleSubmit, isSubmitting }) => (
-            <form onSubmit={handleSubmit}>
+            <form className={styles.form} onSubmit={handleSubmit}>
               <div>
                 <span className={styles.label}>نام کالا</span>
                 <Field type="text" name="name" placeholder="نام کالا" />
@@ -85,7 +82,7 @@ function Add() {
                   type="submit"
                   disabled={isSubmitting}
                 >
-                  ایجاد
+                  ویرایش
                 </button>
                 <button onClick={noHandler}>انصراف</button>
               </div>
@@ -97,4 +94,4 @@ function Add() {
   );
 }
 
-export default Add;
+export default Edit;

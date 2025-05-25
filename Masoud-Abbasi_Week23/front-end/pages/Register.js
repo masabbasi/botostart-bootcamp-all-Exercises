@@ -1,16 +1,16 @@
+import { useRouter } from "next/router.js";
+import Link from "next/link.js";
 import { Formik, ErrorMessage, Field } from "formik";
-import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import { registerValidationSchema } from "../helper/registerValidationSchema.js";
 import { api } from "../configs/api.js";
 
-import styles from "./Login-register.module.css";
-import logo from "../assets/img/logo.svg";
+import styles from "./login-register.module.css";
 
 function Register() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const registerUser = async (values) => {
     const response = await api.post("/auth/register", values);
     return response;
@@ -21,7 +21,7 @@ function Register() {
     onSuccess: (response) => {
       if (response.message === "User registered successfully") {
         toast.success("ثبت نام با موفقیت انجام شد!");
-        navigate("/login");
+       router.push("/login")
       }
     },
   });
@@ -44,7 +44,7 @@ function Register() {
   return (
     <>
       <div className={styles.container}>
-        <img className={styles.logo} src={logo} alt="" />
+        <img className={styles.logo} src="/img/logo.svg" alt="" />
         <h1 className={styles.title}>فرم ثبت نام</h1>
         <Formik
           initialValues={{ username: "", password: "", repassword: "" }}
@@ -95,7 +95,7 @@ function Register() {
             </form>
           )}
         </Formik>
-        <Link className={styles.link} to="/login">
+        <Link className={styles.link} href="/login">
           حساب کاربری دارید؟
         </Link>
       </div>

@@ -28,13 +28,13 @@
   margin-bottom: 2rem;
 }
 
-form .label {
+.form .label {
   font-size: 1.2rem;
   margin: 0.5rem 0;
   display: inline-block;
 }
 
-form input {
+.form input {
   width: 100%;
   height: 3rem;
   background-color: var(--gray);
@@ -45,7 +45,7 @@ form input {
   color: var(--text-color);
 }
 
-form input:focus {
+.form input:focus {
   border-color: var(--border-color);
 }
 
@@ -93,12 +93,12 @@ form input:focus {
     font-size: 2.2rem;
   }
 
-  form .label {
+  .form .label {
     font-size: 1.5rem;
     font-weight: bold;
   }
 
-  form input {
+  .form input {
     height: 4rem;
     padding: 1.5rem 1rem;
   }

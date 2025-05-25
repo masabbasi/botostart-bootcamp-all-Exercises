@@ -1,0 +1,44 @@
+:root {
+  --background-color: #f7f8f8;
+  --secondary-color: #55a3f0;
+  --text-color: #282828;
+  --secondary-text-color: #28282880;
+  --light: #ffffff;
+  --gray: #f2f2f2;
+  --border-color: #e4e4e4;
+}
+
+html {
+  font-size: 62.5%; /* 1rem = 10px; */
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  user-select: none;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: Vazirmatn, sans-serif;
+}
+
+#__next {
+  width: 100vw;
+  min-height: 97vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.developer {
+  text-align: center;
+  font-weight: bold;
+  color: var(--secondary-color);
+  font-size: 1.2rem;
+}

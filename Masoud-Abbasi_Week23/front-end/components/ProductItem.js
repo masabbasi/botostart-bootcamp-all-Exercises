@@ -1,6 +1,4 @@
-import editButton from "../assets/img/edit.svg";
-import deleteButton from "../assets/img/delete.svg";
-import { useApp } from "../context/appProvider.jsx";
+import { useApp } from "../context/AppProvider.js";
 
 function ProductItem({ product }) {
   const { dispatch } = useApp();
@@ -23,9 +21,9 @@ function ProductItem({ product }) {
       <td>{product.price}</td>
       <td>{product.id}</td>
       <td>
-        <img src={editButton} alt="" onClick={() => editHandler(product)} />
+        <img src="/img/edit.svg" alt="" onClick={() => editHandler(product)} />
         <img
-          src={deleteButton}
+          src="/img/delete.svg"
           alt=""
           onClick={() => deleteHandler(product.id)}
         />

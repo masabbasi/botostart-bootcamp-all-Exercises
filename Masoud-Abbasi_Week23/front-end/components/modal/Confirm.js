@@ -1,28 +1,13 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-import { useApp } from "../context/appProvider";
-import { api } from "../configs/api.js";
-
 import styles from "./Confirm.module.css";
-import confirmIcon from "../assets/img/confirm-delete.svg";
+import { useDeleteProduct } from "@/hooks/useDeleteProduct.js";
 
 function Confirm() {
   const queryClient = useQueryClient();
 
-  const {
-    state: { selectProduct },
-    dispatch,
-  } = useApp();
-
-  const deleteProduct = async () => {
-    const response = await api.delete(`/products/${selectProduct}`);
-    return response;
-  };
-
-  const mutation = useMutation({
-    mutationFn: deleteProduct,
-  });
+  const { selectProduct, dispatch, mutation } = useDeleteProduct();
 
   const yesHandler = () => {
     mutation.mutate(selectProduct, {
@@ -51,7 +36,11 @@ function Confirm() {
   return (
     <div className={styles.container}>
       <div className={styles.main}>
-        <img className={styles.img} src={confirmIcon} alt="Confirm Icon" />
+        <img
+          className={styles.img}
+          src="/img/confirm-delete.svg"
+          alt="Confirm Icon"
+        />
         <p className={styles.message}>آیا از حذف این محصول مطمئنید؟</p>
         <div className={styles.button}>
           <button className={styles.confirm} onClick={yesHandler}>
